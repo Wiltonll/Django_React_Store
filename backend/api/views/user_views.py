@@ -20,9 +20,6 @@ from api.serializers import UserSerializer,UserSerializerWithToken
 
 
 
-
-
-
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
@@ -31,19 +28,15 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         for k,v in serializer.items():
             data[k] =v
-
         return data
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
-
-     
         token['username'] = user.username
         token['message'] = "Django & React"
-        
 
         return token
-
+ 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
