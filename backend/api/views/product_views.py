@@ -20,7 +20,7 @@ def getProducts(request):
     if query == None:
         query = ''
 
-    products = Product.objects.filter(name__icontains=query).order_by('-_id')
+    products = Product.objects.filter(name__icontains=query).order_by('id')
     page = request.query_params.get('page')
     if page is None or page.strip() == '':
         page = 1
