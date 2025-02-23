@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/slices/userSlice";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -11,8 +12,8 @@ import {
 import { ShoppingCart, AccountCircle } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchBox from "./SearchBox";
-import logo from "../logo.png";
-import { logout } from "../redux/slices/userSlice";
+import logo from "../assets/logo.svg"
+
 
 const useStyles = makeStyles((theme) => ({
   appBar: {

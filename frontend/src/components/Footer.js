@@ -9,6 +9,7 @@ function Footer() {
           <Grid item>
             <Typography variant="body1" color="textSecondary" align="center">
               Todos os direitos reservados &copy; sangiorgiovba@gmail.com
+              
             </Typography>
           </Grid>
         </Grid>
