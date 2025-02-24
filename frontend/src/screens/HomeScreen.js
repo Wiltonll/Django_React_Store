@@ -25,7 +25,7 @@ function HomeScreen({ history }) {
     dispatch(fetchProductList(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
 
-
+  console.log("Produtos carregados no Redux:", products);
   return (
     <div>
       {!keyword && (

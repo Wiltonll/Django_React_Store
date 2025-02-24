@@ -1,14 +1,13 @@
 import axios from 'axios';
 
+const API_URL = "http://127.0.0.1:8000";
 class ProductAPI {
   async getProductList(keyword= '' , pageNumber = '') {
     try {
-      const { data } = await axios.get(`/api/products${keyword}`, {
-        params: {
-       
-          page: pageNumber
-        }
+      const { data } = await axios.get(`${API_URL}/api/products/`, {
+        params: { keyword, page: pageNumber }
       });
+      console.log("Dados recebidos da API:", data);  // Verifica se a API está retornando corretamente
       return data;
     } catch (error) {
       throw error.response && error.response.data.detail
@@ -19,7 +18,7 @@ class ProductAPI {
   
   async getProductDetails(productId) {
     try {
-      const { data } = await axios.get(`/api/products/${productId}`);
+      const { data } = await axios.get(`${API_URL}/api/products/${productId}`);
       console.log(data)
       return data;      
     } catch (error) {
@@ -40,7 +39,7 @@ class ProductAPI {
       };
 
       const { data } = await axios.post(
-        `/api/products/${productId}/reviews/`,
+        `${API_URL}/api/products/${productId}/reviews/`,
         review,
         config
       );
@@ -54,7 +53,7 @@ class ProductAPI {
 
   async getTopRatedProducts() {
     try {
-      const { data } = await axios.get(`/api/products/top/`);
+      const { data } = await axios.get(`${API_URL}/api/products/top/`);
       return data;
     } catch (error) {
       throw error.response && error.response.data.detail

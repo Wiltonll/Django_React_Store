@@ -16,35 +16,32 @@ from api.serializers import ProductSerializer
 
 @api_view(['GET'])
 def getProducts(request):
-    query = request.query_params.get('keyword')
-    if query == None:
-        query = ''
+    query = request.GET.get('keyword', '')  
 
-    products = Product.objects.filter(name__icontains=query).order_by('id')
-    page = request.query_params.get('page')
-    if page is None or page.strip() == '':
-        page = 1
-    else:
-        try:
-            page = int(page)
-        except ValueError:
-            page = 1
-    paginator = Paginator(products, 8)
-       
+    products = Product.objects.filter(name__icontains=query).order_by('id')  
+    page = request.GET.get('page', 1)
+    
     try:
-        products = paginator.page(page)
+        page = int(page)  
+    except ValueError:
+        page = 1  # Se falhar, assume que é a página 1
+
+    paginator = Paginator(products, 8) 
+
+    try:
+        products_paginated = paginator.page(page)
     except PageNotAnInteger:
-        products = paginator.page(1)
+        products_paginated = paginator.page(1)
     except EmptyPage:
-        products = paginator.page(paginator.num_pages)
+        products_paginated = paginator.page(paginator.num_pages)
 
-    if page == None:
-        page = 1
-    page = int(page)
+    serializer = ProductSerializer(products_paginated, many=True)
 
-    serializer = ProductSerializer(products, many=True)
-    return Response({'products': serializer.data, 'page': page, 'pages': paginator.num_pages})
-
+    return Response({
+        "products": serializer.data,
+        "page": page,
+        "pages": paginator.num_pages
+    })
 
 
 
