@@ -62,7 +62,13 @@ class ProductAPI {
     }
   }
 }
-
+const Product = ({ product }) => {
+  return (
+    <div className="product-card">
+        <img src={product.image} alt={product.name} className="product-image" />   </div>
+        );
+      };
+      
 const productAPI = new ProductAPI();
 
 export default productAPI;
