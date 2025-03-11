@@ -12,7 +12,7 @@ import {
 import { ShoppingCart, AccountCircle } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchBox from "./SearchBox";
-import logo from "../assets/logo.svg"
+import logo from "../assets/icons.png"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -66,7 +66,10 @@ const Header = () => {
               src={logo}
               alt=""
               style={{
-                height: 60,
+                height: 50,
+                width: 50,  
+                borderRadius: "50%",  
+                objectFit: "cover",
               }}
             />
           </Link>
