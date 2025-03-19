@@ -5,7 +5,18 @@ import Rating from "./Rating";
 
 function Product({ product }) {
   return (
-    <Paper sx={{ maxWidth: 345, margin: "5px" }}>
+    <Paper 
+      sx={{ 
+        maxWidth: 345, 
+        margin: "5px", 
+        transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
+        "&:hover": {
+          transform: "scale(1.05)",
+          boxShadow: "0 0 15px rgba(0, 0, 0, 0.8)",
+          border: "2px solid black",
+        }
+      }}
+    >
       <CardActionArea component={Link} to={`/product/${product._id}`}>
         <CardMedia
           component="img"
@@ -13,11 +24,11 @@ function Product({ product }) {
           image={product.image}
           alt={product.name}
         />
-        <CardContent style={{textAlign:"center" }}>
+        <CardContent style={{ textAlign: "center" }}>
           <Typography gutterBottom variant="h6" component="div">
             {product.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{display:'flex',flexDirection:"column", alignItems:'center' }} component="div">
+          <Typography variant="body2" color="text.secondary" sx={{ display: "flex", flexDirection: "column", alignItems: "center" }} component="div">
             <Rating 
               value={product.rating}
               text={`${product.numReviews} Avaliações`}

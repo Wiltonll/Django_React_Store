@@ -2,16 +2,13 @@ main {
   min-height: 80vh;
 }
 
-
 h3 {
   padding: 1rem 0;
 }
 
-
 .rating span {
   margin: 0.1rem;
 }
-
 
 h1 {
   font-size: 1.8rem;
@@ -23,16 +20,24 @@ h2 {
   padding: 0.5rem 0;
 }
 
+.carousel-container {
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+  border-radius: 20px;
+}
 
-.carousel-item-next,
-.carousel-item-prev,
+
 .carousel-item.active {
   display: flex;
+  transform: scale(0.98);
+  opacity: 0.9;
+  
 }
 
 .carousel-caption {
   position: absolute;
-  top: 0;
+  top: 10%;
   color: white;
 }
 
@@ -42,20 +47,39 @@ h2 {
 
 .carousel img {
   display: block;
-  height: 300px;
-  padding: 30px;
-  margin: 40px;
-  margin-top: 50px;
-  border-radius: 50%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  height: 400px; 
+  object-fit: cover; 
+  border-radius: 0; 
+  padding: 0; 
+  margin: 0;
 }
 
 .carousel a {
   margin: 0 auto;
 }
 
-@media (max-width: 900px) {
+.carousel-banner {
+  width: 100%;
+  height: 400px; 
+  object-fit: cover;  
+  border-radius: 0;
+}
+
+.carousel-product-image {
+  width: 100%;
+  height: 400px;  
+  object-fit: contain;
+  transform: scale(0.20);
+  transition: transform 0.1s ease-in-out;
+}
+
+.carousel .carousel-item {
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+
+@media (max-width: 1920px) {
   .carousel-caption h2 {
     font-size: 2.5vw;
     color: white;
@@ -78,20 +102,17 @@ h2 {
   overflow: hidden;  
 }
 
-/* Imagens dentro dos produtos */
 .product-card img {
   width: 100%;
   height: 180px; 
   object-fit: contain; 
 }
 
-/* Nome do produto */
 .product-card h3 {
   font-size: 1rem;
   margin: 10px 0;
 }
 
-/* Avaliação (estrelas) */
 .product-card .rating {
   display: flex;
   justify-content: center;
@@ -99,9 +120,117 @@ h2 {
   gap: 5px;
 }
 
-/* Preço */
 .product-card .price {
   font-size: 1.2rem;
   font-weight: bold;
   color: #000;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 140, 255, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 250px; 
+  height: 400px; 
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover {
+  animation: pulse 1s infinite;
+  border: 2px solid #008cff; 
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap');
+
+.custom-title {
+  font-family: 'Arvo', serif;  
+  font-weight: 700;  
+  font-size: 28px; 
+  color: #000; 
+  text-transform: uppercase; 
+  margin: 20px 0; 
+}
+
+
+.carousel-control-prev span,
+.carousel-control-next span {
+  display: none !important;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 50px !important; 
+  height: 50px !important;
+  background-color: rgba(255, 255, 255, 0.7) !important; 
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.carousel-control-prev {
+  left: 20px !important;
+}
+
+.carousel-control-next {
+  right: 20px !important;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  display: block !important;
+  width: 20px !important;
+  height: 20px !important;
+  background-size: contain !important;
+  filter: invert(1) !important; 
+}
+
+.carousel-control-prev-icon::before,
+.carousel-control-next-icon::before {
+  content: '' !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+img::after {
+  display: none !important;
+  content: "" !important;
 }

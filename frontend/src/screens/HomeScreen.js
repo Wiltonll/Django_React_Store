@@ -8,34 +8,37 @@ import ProductCarousel from "../components/ProductCarousel";
 import { fetchProductList } from "../redux/slices/productSlice";
 import Paginate from "../components/Paginate";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+
 function HomeScreen({ history }) {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.product.productList);
   const topRatedProducts = useSelector((state) => state.product.topRatedProducts);
 
   const { products, loading, error, page, pages } = productList;
-  const { pageNumber } = useParams()
+  const { pageNumber } = useParams();
   const { products: topProducts, loading: topLoading, error: topError } = topRatedProducts;
-  console.log(productList)
-  let keyword =
-    history.location
-      .search;
-  console.log(keyword)
+
+  console.log(productList);
+  let keyword = history.location.search;
+  console.log(keyword);
+
   useEffect(() => {
     dispatch(fetchProductList(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
 
   console.log("Produtos carregados no Redux:", products);
+
   return (
     <div>
       {!keyword && (
         <>
-          <div style={{ fontWeight: "bold", fontSize: "25px", color: "black", fontFamily: "MozAnimationDelay" }}>EM ALTA</div>
+          <div className="custom-title">EM ALTA</div>
           <ProductCarousel />
         </>
       )}
 
-      <div style={{ fontWeight: "bold", fontSize: "25px", color: "black", fontFamily: "MozAnimationDelay" }}>PRODUTOS VARIADOS</div>
+      <div className="custom-title">PRODUTOS VARIADOS</div>
+      
       {loading ? (
         <Loader />
       ) : error ? (
@@ -55,6 +58,5 @@ function HomeScreen({ history }) {
     </div>
   );
 }
-
 
 export default HomeScreen;
