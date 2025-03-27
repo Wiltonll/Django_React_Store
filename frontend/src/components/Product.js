@@ -7,6 +7,8 @@ function Product({ product }) {
   return (
     <Paper 
       sx={{ 
+        width: 250, 
+        height: 400,
         maxWidth: 345, 
         margin: "5px", 
         transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
@@ -20,12 +22,12 @@ function Product({ product }) {
       <CardActionArea component={Link} to={`/product/${product._id}`}>
         <CardMedia
           component="img"
-          sx={{ objectFit: "contain", maxHeight: 140 }}
+          sx={{ objectFit: "contain", height: 180 }}
           image={product.image}
           alt={product.name}
         />
         <CardContent style={{ textAlign: "center" }}>
-          <Typography gutterBottom variant="h6" component="div">
+          <Typography gutterBottom variant="h6" component="div" sx={{ minHeight: 50 }}>
             {product.name}
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ display: "flex", flexDirection: "column", alignItems: "center" }} component="div">

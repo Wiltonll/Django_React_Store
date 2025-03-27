@@ -79,6 +79,24 @@ h2 {
 }
 
 
+@keyframes pulseHover {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.carousel-container:hover {
+  animation: pulseHover 1.0s ease-in-out;
+}
+
+
+
 @media (max-width: 1920px) {
   .carousel-caption h2 {
     font-size: 2.5vw;
@@ -174,63 +192,3 @@ h2 {
   margin: 20px 0; 
 }
 
-
-.carousel-control-prev span,
-.carousel-control-next span {
-  display: none !important;
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-  width: 50px !important; 
-  height: 50px !important;
-  background-color: rgba(255, 255, 255, 0.7) !important; 
-  border-radius: 50% !important;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  z-index: 10;
-  opacity: 1;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-}
-
-.carousel-control-prev {
-  left: 20px !important;
-}
-
-.carousel-control-next {
-  right: 20px !important;
-}
-
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-  background-color: rgba(255, 255, 255, 1);
-  transform: translateY(-50%) scale(1.1);
-  transition: all 0.3s ease-in-out;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  display: block !important;
-  width: 20px !important;
-  height: 20px !important;
-  background-size: contain !important;
-  filter: invert(1) !important; 
-}
-
-.carousel-control-prev-icon::before,
-.carousel-control-next-icon::before {
-  content: '' !important;
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-img::after {
-  display: none !important;
-  content: "" !important;
-}
